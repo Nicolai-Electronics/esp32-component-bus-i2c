@@ -20,6 +20,8 @@ esp_err_t i2c_init(int bus, int pin_sda, int pin_scl, int clk_speed, bool pullup
     
     esp_err_t res = i2c_param_config(bus, &i2c_config);
     if (res != ESP_OK) return res;
+    res = i2c_set_timeout(bus, 20000); // 250 us ( 20000 clock cycles @ APB freq = 80 MHz )
+    if (res != ESP_OK) return res;
     return i2c_driver_install(bus, i2c_config.mode, 0, 0, 0);
 }
 
