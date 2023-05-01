@@ -123,7 +123,7 @@ esp_err_t i2c_write_reg(int bus, uint8_t addr, uint8_t reg, uint8_t value) {
     return res;
 }
 
-esp_err_t i2c_write_reg_n(int bus, uint8_t addr, uint8_t reg, uint8_t *value, size_t value_len) {
+esp_err_t i2c_write_reg_n(int bus, uint8_t addr, uint8_t reg, const uint8_t *value, size_t value_len) {
     i2c_cmd_handle_t cmd = i2c_cmd_link_create();
     esp_err_t res = i2c_master_start(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
