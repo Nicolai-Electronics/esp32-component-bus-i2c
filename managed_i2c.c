@@ -40,7 +40,7 @@ esp_err_t i2c_read_bytes(int bus, uint8_t addr, uint8_t *value, size_t value_len
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }   
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -66,7 +66,7 @@ esp_err_t i2c_read_reg(int bus, uint8_t addr, uint8_t reg, uint8_t *value, size_
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -84,7 +84,7 @@ esp_err_t i2c_read_event(int bus, uint8_t addr, uint8_t *buf) {
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -100,7 +100,7 @@ esp_err_t i2c_write_byte(int bus, uint8_t addr, uint8_t value) {
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -118,7 +118,7 @@ esp_err_t i2c_write_reg(int bus, uint8_t addr, uint8_t reg, uint8_t value) {
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -138,7 +138,7 @@ esp_err_t i2c_write_reg_n(int bus, uint8_t addr, uint8_t reg, const uint8_t *val
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -156,7 +156,7 @@ esp_err_t i2c_write_buffer(int bus, uint8_t addr, const uint8_t* buffer, uint16_
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -176,7 +176,7 @@ esp_err_t i2c_write_buffer_reg(int bus, uint8_t addr, uint8_t reg, const uint8_t
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
@@ -200,7 +200,7 @@ esp_err_t i2c_write_reg32(int bus, uint8_t addr, uint8_t reg, uint32_t value) {
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
-    res = i2c_master_cmd_begin(bus, cmd, 1000 / portTICK_RATE_MS);
+    res = i2c_master_cmd_begin(bus, cmd, pdMS_TO_TICKS(1000));
     i2c_cmd_link_delete(cmd);
     return res;
 }
