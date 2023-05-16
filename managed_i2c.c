@@ -20,8 +20,7 @@ esp_err_t i2c_init(int bus, int pin_sda, int pin_scl, int clk_speed, bool pullup
     
     esp_err_t res = i2c_param_config(bus, &i2c_config);
     if (res != ESP_OK) return res;
-    res = i2c_set_timeout(bus, 20000); // 250 us ( 20000 clock cycles @ APB freq = 80 MHz )
-    if (res != ESP_OK) return res;
+    i2c_set_timeout(bus, 20000); // 250 us ( 20000 clock cycles @ APB freq = 80 MHz )
     return i2c_driver_install(bus, i2c_config.mode, 0, 0, 0);
 }
 
@@ -169,10 +168,8 @@ esp_err_t i2c_write_buffer_reg(int bus, uint8_t addr, uint8_t reg, const uint8_t
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
     res = i2c_master_write_byte(cmd, reg, ACK_CHECK_EN);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
-    for (uint16_t i = 0; i < len; i++) {
-        res = i2c_master_write_byte(cmd, buffer[i], ACK_CHECK_EN);
-        if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
-    }
+    res = i2c_master_write(cmd, buffer, len, ACK_CHECK_EN);
+    if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
     res = i2c_master_stop(cmd);
     if (res != ESP_OK) { i2c_cmd_link_delete(cmd); return res; }
 
