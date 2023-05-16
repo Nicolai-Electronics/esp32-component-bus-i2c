@@ -2,6 +2,10 @@
 
 #include <esp_err.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define WRITE_BIT     I2C_MASTER_WRITE /* I2C master write */
 #define READ_BIT      I2C_MASTER_READ  /* I2C master read */
 #define ACK_CHECK_EN  0x1              /* I2C master will check ack from slave*/
@@ -19,3 +23,7 @@ esp_err_t i2c_write_reg_n(int bus, uint8_t addr, uint8_t reg, const uint8_t *val
 esp_err_t i2c_write_buffer(int bus, uint8_t addr, const uint8_t* buffer, uint16_t len);
 esp_err_t i2c_write_buffer_reg(int bus, uint8_t addr, uint8_t reg, const uint8_t* buffer, uint16_t len);
 esp_err_t i2c_write_reg32(int bus, uint8_t addr, uint8_t reg, uint32_t value);
+
+#ifdef __cplusplus
+}
+#endif
