@@ -1,6 +1,7 @@
 #pragma once
 
 #include <esp_err.h>
+#include <stdbool.h>
 
 #define WRITE_BIT     I2C_MASTER_WRITE /* I2C master write */
 #define READ_BIT      I2C_MASTER_READ  /* I2C master read */
@@ -16,6 +17,6 @@ esp_err_t i2c_read_event(int bus, uint8_t addr, uint8_t *buf);
 esp_err_t i2c_write_byte(int bus, uint8_t addr, uint8_t value);
 esp_err_t i2c_write_reg(int bus, uint8_t addr, uint8_t reg, uint8_t value);
 esp_err_t i2c_write_reg_n(int bus, uint8_t addr, uint8_t reg, const uint8_t *value, size_t value_len);
-esp_err_t i2c_write_buffer(int bus, uint8_t addr, const uint8_t* buffer, uint16_t len);
-esp_err_t i2c_write_buffer_reg(int bus, uint8_t addr, uint8_t reg, const uint8_t* buffer, uint16_t len);
+esp_err_t i2c_write_buffer(int bus, uint8_t addr, const uint8_t *buffer, uint16_t len);
+esp_err_t i2c_write_buffer_reg(int bus, uint8_t addr, uint8_t reg, const uint8_t *buffer, uint16_t len);
 esp_err_t i2c_write_reg32(int bus, uint8_t addr, uint8_t reg, uint32_t value);
